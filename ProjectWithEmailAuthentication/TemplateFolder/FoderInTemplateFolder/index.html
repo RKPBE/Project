@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+</head>
+<body>
+    {% for message in messages %}
+    <div class="alert alert.{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>Message:</strong>{{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor %}
+
+    <h3>Welcome to the World of Electric Vehicle! {{fname}} </h3>
+
+    {% if user.is_authenticated %}
+
+    <h3>Hello {{fname}}</h3>
+    <h4>You are successfully logged in!</h4>
+    <form action="add" method="post">
+        {% csrf_token %}
+        
+        <h1>Calculating battery voltage for electric vehicle</h1>
+         <br>
+        <br>
+        Enter voltage of each battery : <pre class="tab1"></pre> <pre class="tab2"></pre> <pre class="tab2"></pre> <input type="text" name="a"><br>
+        Enter current rating of each battary in ampear hour : <pre class="tab3"></pre><input type="text" name="b"><br>
+        Enter number of batteries in series : <pre class="tab1"></pre><pre class="tab2"></pre><pre class="tab3"></pre><input type="text" name="c"><br>
+        Enter Number of batteries in parallel : <pre class="tab1"></pre><pre class="tab2"></pre> <input type="text" name="d"><br>
+        Enter batteries efficency in percentage : <pre class="tab1"></pre><pre class="tab2"></pre><input type="text" name="e"><br>
+        Enter load connected to batteries in watts : <pre class="tab1"></pre><pre class="tab3"></pre><input type="text" name="f"><br>
+        <br><br>
+
+        <h1>Calculating Rolling Resistance of Vehicle:</h1>
+        <br>
+        Enter Coefficient of rolling resistance (urr) : <pre class="tab4"></pre><input type="text" name="g"><br>
+        Enter Mass (m) of vehivle in Kg : <pre class="tab1"></pre><input type="text" name="h"><br>
+        Enter banking angle of road (x) in deg : <pre class="tab2"></pre> <input type="text" name="i"><br>
+        <br>
+        <br>
+
+        <h1>Calculating Aerodynamic Drag:</h1>
+        Enter Aerodynamic drag coefficient : <pre class="tab1"></pre><pre class="tab3"></pre><input type="text" name="j"><br>
+        Enter Forward constant speed of vehicle in km/hr : <pre class="tab4"></pre><pre class="tab4"></pre><input type="text" name="k"><br>
+        Enter Air speed opposite to vehicle motion in km/hr  : <pre class="tab4"></pre> <input type="text" name="l"><br>
+        Enter Front area of vehicle : <pre class="tab1"></pre> <pre class="tab1"></pre> <input type="text" name="m"><br><br><br>
+
+
+        <h1>Calculating Gradient Force</h1><br>
+        Gradient force  Fg = mg sin x<br>
+        Fg = mg sin x<br>
+	    Fg = Gradient force<br>
+	    m  = mass of vehicle<br>
+	    g  = Acceleration due to gravity 9.8 kg m /s^2<br>
+	    x  = Slope angle of road<br>
+
+
+        <h1>Calculating Tractive Efforts:</h1><br>
+        tractive efforts Fte   = Frr  + Fg + Fad   + Fla + FAA<br>
+        Rolling Resistance : Frr<br>
+        Gradient force : Fg<br>
+        Aerodynamic drag : Fad<br>
+        Linear Acceleration force : Fla<br>
+        Angular Acceleration : FAA<br>
+        <br>
+        <br>
+        <h1>Calculating Vehicle Range on Plane Road:</h1>
+        Enter battary bank energy in watt hr  (voltage * current Hr) =  <input type="text" name="n"><br>
+        <br>
+        <br>
+        <h1>Calculating Vehicle Motor Specifications:</h1>
+        Enter wheel radius :<pre class="tab2"></pre> <input type="text" name="o"><br>
+        Enter Gear ratio : <pre class="tab2"></pre><pre class="tab4"></pre><input type="text" name="p"><br>
+        Enter Gear Efficency : <pre class="tab3"></pre> <input type="text" name="q"><br>
+
+
+
+        <br>
+        <br>
+
+
+
+        <input type="submit" value="Submit">
+        <br>
+        <br>
+        <br>
+        <br>
+    
+    </form>
+    <pre ><a href='/'><h1>Back </h1> </a> </pre>
+
+
+    {% else %}
+    <button type="submit"><a href="/signup">SignUp</a></button>
+    <button type="submit"><a href="/signin">SignIn</a></button>
+    {% endif %}
+    
+</body>
+</html>
